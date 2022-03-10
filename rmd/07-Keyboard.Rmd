@@ -1,0 +1,58 @@
+# Keyboard example Version 2 
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+First we want to look at the data: 
+```{r, include=FALSE}
+keyboard = c(rep(1,4), rep(2,4), rep(3,4))
+X = c(60, 72, 61, 50, 54, 68, 66, 59, 56, 56, 55, 51)
+Y = c(85, 95, 69, 58, 41, 74, 71, 52, 41, 34, 50, 40)
+data = data.frame("Keyboard" = keyboard, "Hours" = X, "Pain" = Y)
+#summary(data)
+plot(data$Hours, data$Pain,col = data$Keyboard, pch = data$Keyboard, 
+     xlab = "Hours of Keyboarding", ylab = "Hours of Pain" ) 
+legend("topleft", legend = c(1, 2, 3), col = c(1,2,3), pch = c(1,2,3) )
+data$Keyboard = as.factor(data$Keyboard) #save the Keyboard variable as a factor variable
+```
+
+Now we want to model the normal linear model ignoring the covariate: 
+```{r, include = FALSE}
+fit_without_covariates = lm(Pain~Keyboard, data = data)
+anova(fit_without_covariates)
+summary(fit_without_covariates)
+```
+we can see the Keyboard makes a significant difference in the inflicted Pain, when we model it without the covariates 
+
+Now we do a model with one covariate: Hours. We first have to check if the covariate is affected by the treatment because that would be a problem.  
+```{r, include = FALSE}
+fit_check = lm(Hours~Keyboard, data = data)
+anova(fit_check)
+```
+lets also look at the mean of Hours for the different Keyboard types: 
+```{r, include = FALSE}
+aggregate(data$Hours, list(data$Keyboard), FUN=mean)
+```
+So they differ, but apparently not enough to say it's a significant violation of our assumption that the treatment does not affect the covariate. (so people with keyboard type 3 type less but not so much that it is significant)
+
+Now we want to look what happens if we include the covariates in our model: We can now use either the seperate intercept or the seperate slopes model. Let's start with the seperate intercept one and compare it to the single line (covariate effect but no treatment effect)
+```{r, include = FALSE}
+fit_seperate_intercepts = lm(Pain ~ Hours + relevel(Keyboard, ref = "3"), data = data) 
+fit_single_line = lm(Pain ~ relevel(Keyboard, ref = "3"), data = data)
+anova(fit_seperate_intercepts)
+anova(fit_seperate_intercepts, fit_single_line)
+summary(fit_seperate_intercepts)
+```
+
+The differences of how the variables enter the model: 
+```{r, include = FALSE}
+fit_seperate_lines_1 = lm(Pain~ Hours + Keyboard + Hours:Keyboard , data = data )
+anova(fit_seperate_lines_1)
+``` 
+
+
+
+
+
+

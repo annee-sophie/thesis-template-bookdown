@@ -1,0 +1,53 @@
+# Keyboard example 
+
+```{r, echo=FALSE}
+keyboard = c(rep(1,4), rep(2,4), rep(3,4))
+X = c(60, 72, 61, 50, 54, 68, 66, 59, 56, 56, 55, 51)
+Y = c(85, 95, 69, 58, 41, 74, 71, 52, 41, 34, 50, 40)
+data = data.frame("Keyboard" = keyboard, "Hours" = X, "Pain" = Y)
+#summary(data)
+plot(data$Hours, data$Pain,col = data$Keyboard, pch = data$Keyboard, 
+     xlab = "Hours of Keyboarding", ylab = "Hours of Pain" ) 
+legend("topleft", legend = c(1, 2, 3), col = c(1,2,3), pch = c(1,2,3) )
+```
+
+Analysis of the different models
+
+First we look at null hypothesis: is the treatment affecting the covariates?  
+```{r, echo = FALSE}
+data$Keyboard = as.factor(data$Keyboard)
+fit_single_line = lm(Hours ~ Keyboard, data = data)
+fit_constant_mean = lm(Hours ~ 1 , data = data)
+anova(fit_constant_mean, fit_single_line)
+```
+The Means 
+```{r, echo = FALSE}
+aggregate(data$Hours, list(data$Keyboard), FUN=mean)
+```
+
+```{r, echo = FALSE}
+fit_seperate_intercepts = lm(Pain~Hours + Keyboard , data = data)
+fit2 = lm(Pain~Hours, data = data)
+anova(fit2, fit_seperate_intercepts)
+```
+
+```{r, echo = FALSE}
+summary(fit_seperate_intercepts)
+```
+The means and SD of the response variable 
+```{r, echo = FALSE}
+aggregate(data$Pain, list(data$Keyboard), FUN=mean)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

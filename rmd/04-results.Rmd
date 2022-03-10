@@ -18,4 +18,14 @@ kable(
   booktabs = TRUE) %>% 
   kable_styling(latex_options = "striped")
 ```
-
+Blablaa
+```{r fig5, fig.cap='caption', out.width='80%', fig.align='center', echo=FALSE}
+keyboard = c(rep(1,4), rep(2,4), rep(3,4))
+X = c(60, 72, 61, 50, 54, 68, 66, 59, 56, 56, 55, 51)
+Y = c(85, 95, 69, 58, 41, 74, 71, 52, 41, 34, 50, 40)
+data = data.frame("Keyboard" = keyboard, "Hours" = X, "Pain" = Y)
+summary(data)
+plot(data$Hours, data$Pain,col = data$Keyboard, pch = data$Keyboard, 
+     xlab = "Hours of Keyboarding", ylab = "Hours of Pain" ) 
+legend("topleft", legend = c(1, 2, 3), col = c(1,2,3), pch = c(1,2,3) )
+```

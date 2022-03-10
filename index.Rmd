@@ -1,13 +1,11 @@
 --- 
-title: "A bookdown template for sfs"
-author: "Nicola Gnecco and Lorenz Walthert"
-date: "April 2018"
-submission_date: "August 1th 2018"
-adviser: "Prof. Dr. Nicolai Meinshausen"
+title: "Guidelines for Covariate Adjustment"
+author: "Anna Reichart"
+date: "September 2022"
+submission_date: "September 5th 2022"
+adviser: "Dr. Lukas Meier "
 coadviser:
 output:
-  bookdown::epub_book:
-    default
   bookdown::pdf_book:
     template: tex/MasterThesisSfS.tex
     keep_tex: yes
@@ -23,6 +21,8 @@ output:
       tango
     includes:
       in_header: tex/preamble.tex
+  bookdown::epub_book:
+    default
   bookdown::gitbook: default
 bibliography: [bib/bib.bib]
 biblio-style: apalike
