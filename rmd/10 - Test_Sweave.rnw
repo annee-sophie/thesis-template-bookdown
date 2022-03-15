@@ -1,0 +1,19 @@
+\documentclass{article}
+\title{Sweave Test}
+\author{Anna}
+\usepackage{Sweave} 
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+This is a test 
+<<>>=
+library(car)
+
+data("anscombe")
+summary(anscombe)
+@
+
+
+
+
+\end{document}

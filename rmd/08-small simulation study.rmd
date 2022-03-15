@@ -1,5 +1,6 @@
 # small simulation study 
 
+From: 10 things to know about covariate adjustment 
 
 ```{r} 
 rm(list=ls())

@@ -34,7 +34,7 @@ So they differ, but apparently not enough to say it's a significant violation of
 
 Now we want to look what happens if we include the covariates in our model: We can now use either the seperate intercept or the seperate slopes model. Let's start with the seperate intercept one and compare it to the single line (covariate effect but no treatment effect)
 ```{r, include = FALSE}
-fit_seperate_intercepts = lm(Pain ~ Hours + relevel(Keyboard, ref = "3"), data = data) 
+fit_seperate_intercepts = lm(Pain ~ Hours + Keyboard, data = data) 
 fit_seperate_intercepts = lm(Pain ~Hours + Keyboard, data = data) 
 fit_single_line = lm(Pain ~ relevel(Keyboard, ref = "3"), data = data)
 anova(fit_seperate_intercepts)
@@ -118,4 +118,18 @@ abline(a = coef(fit_seperate_lines)[1] -
 abline(fit_single_line, col = "blue")
 legend("bottomright", legend = c("fit seperate lines: keyboard = 1","fit seperate lines: keyboard = 2", "fit seperate lines: keyboard = 3", "fit single line"), col = c("black","red","green", "blue"), lty = c(rep(1,4))) 
 ```
+
+```{r}
+options(contrasts = c("contr.treatment", "contr.poly"))
+fit1 = lm(Pain ~ Hours + Keyboard, data = data) 
+summary(fit1)
+```
+```{r}
+options(contrasts = c("contr.sum", "contr.poly"))
+fit2 = lm(Pain ~ Hours + Keyboard, data = data) 
+summary(fit2)
+```
+
+
+
 

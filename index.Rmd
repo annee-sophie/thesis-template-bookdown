@@ -1,6 +1,6 @@
 --- 
 title: "A bookdown template for sfs"
-author: "Nicola Gnecco and Lorenz Walthert"
+author: "Anna Reichart"
 date: "April 2018"
 submission_date: "August 1th 2018"
 adviser: "Prof. Dr. Nicolai Meinshausen"
