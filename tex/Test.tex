@@ -1,7 +1,47 @@
 
-\chapter*{Test}
+\begin{document}
+\maketitle 
+\subsection*{Introduction}
+This section is based on "The Analysis of Covariance and Alternatives: Statistical Methods for Experiments, Quasi‐Experiments, and Single‐Case Studies, Second Edition"
 
-is this included? if yes. where? 
+The main advantages of including the covariate in randomized experiments are: 
+\begin{enumerate}
+  \item generally greater power (in RCT is this the major payoff)
+  \item a reduction in bias caused by chance differences between groups that exist before the treatments are administered (this bias is generally small in randomized designs) 
+  \item conditionally unbiased estimates of treatment effects 
+\end{enumerate}
+
+Types of covariates: 
+\begin{itemize}
+  \item baseline measures 
+  \item organismic characteristics 
+  \item environmental characteristics 
+\end{itemize}
+
+\subsubsection*{Conditional versus Unconditional Inference}
+In expectation, random assignement provides groups that are exactly equivalent. So it follows that the difference between sample  means on Y (after treatment) is an unbiased estimate of the treatment effect because the groups are in expecation the same the only difference between the groups is due to the treatment.\\
+
+But in the case of a single experiment the two groups will never be exactly the same on a continuous variable before treatments are applied. This means if we use the difference between sample means on Y gives us a conditionally biased estimate of the treatment effect because groups were not exactly the same before treatment. This does not mean that an ANOVA F-test and the associated effect estimate are wrong, but it is possible to do better.
+
+ANCOVA incorporates the information available on the X variable and provides a conditionally unbiased (conditional on X) estimate of the treatment effect.\\
+
+The long run average of these two types of effect estimates are the same under random assignement, but the ANCOVA estimates are more precise. 
+
+\subsubsection*{General Ideas Associated with ANCOVA}
+ANCOVA will statistically partition the effect of the covariate measure from the relationship between the treatments and the dependent variable.\\
+
+The ANCOVA F-test is more likely to identify a statistically significant treatment effect than the ANOVA F-test.
+
+\begin{itemize}
+  \item ANOVA error term is based on variation of Y around individual group means. 
+  \begin{align}
+    \epsilon = 
+  \end{align}
+  error for subject 
+  \item ANCOVA error term is based on variation of Y scores around pooled within group regression lines
+\end{itemize}
+
+
 
 %%% Local Variables: 
 %%% mode: latex
