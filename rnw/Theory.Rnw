@@ -1,4 +1,5 @@
-\documentclass[a4paper]{article}
+\documentclass{article}
+\usepackage[a4paper, top = 3.5cm, bottom = 3.5cm, left = 3.5 cm, right = 3.5 cm]{geometry}
 \usepackage{amsmath}
 \title{Theory on Covariate Adjustment}
 
@@ -74,27 +75,64 @@ where
 \subsection{Computation and Rationale}
 We write here: 
 \begin{eqnarray*}
-N = total number of subjects \\
-n_1, ..., n_k the number of subjects in groups 1,..,k \\
-X = the value of the covariate \\
-x = X-\bar{X}.. \\
-Y = value of the dependent variable \\
-y = Y-\bar{Y} 
+  \begin{array}{ll}
+    N = & \text{total number of subjects} \\
+    n_1, ..., n_k & \text{the number of subjects in groups 1,..,k} \\
+    X = & \text{the value of the covariate} \\
+    x = & X-\bar{X}.. \\
+    Y = & \text{value of the dependent variable}\\
+    y = & Y-\bar{Y}
+  \end{array}
 \end{eqnarray*} 
 
 \begin{enumerate}
-  \item Computation of total sum of squares: They consist of the treatment effects, differences that can be predicted from the covariate X and differences that are neiter (i.e., error) 
+  \item Computation of total sum of squares: They consist of the treatment effects, differences that can be predicted from the covariate X and differences that are neither (i.e., error) 
   \begin{align}
-    Total SS = \sum{y_t^2} = \sum{Y_t^2} - \frac{1}{N}              (\sum{Y_t})^2
+    \text{Total SS} = \sum{y_t^2} = \sum{Y_t^2} - \frac{1}{N}(\sum{Y_t})^2
   \end{align}
   
   \item Computation of total residual SS 
-  \begin{eqnarray}
-  SS(SSres_t) = \sum{y_t^2} - \frac{(\sum{xy_t})^2}{\sum{x_t^2}} = \\
-  \qquad[\sum{Y_t^2} - \frac{1}{N}(\sum{Y_t})^2] - \\
-  \qquad[\frac{\qquad[\sum{XY_t} -
-  \frac{(\sum{X_t})(\sum{Y_t})}{N}]^2}{\sum{X_t^t} - \frac{(\sum{X_t})^2}{N}}]
-  \end{eqnarray}
+  \begin{eqnarray*}
+  \text{Total residual SS }(SSres_t) = \sum{y_t^2} - \frac{(\sum{xy_t})^2}{\sum{x_t^2}} = \\
+  \left[\sum{Y_t^2} - \frac{1}{N}(\sum{Y_t})^2 \right] -
+  \left[\frac{\left[\sum{XY_t} -
+  \frac{(\sum{X_t})(\sum{Y_t})}{N}\right]^2}{\sum{X_t^2} - \frac{(\sum{X_t})^2}{N}} \right]
+  \end{eqnarray*}
+
+  \item Computation of within-group sum of squares 
+    \begin{eqnarray*}
+    \text{Within-group SS} = \sum{y_w^2} = \sum{y_1^2} + ... + \sum{y_k^2} \\
+    = \left[\sum{Y_t^2} - \frac{(\sum{Y_1})^2}{n_1}\right] + ... + \left[\sum{Y_t^2} - \frac{(\sum{Y_k})^2}{n_k}\right] 
+    \end{eqnarray*}
+  now we need to compute the sum of squares on X: 
+  \begin{eqnarray*}
+    \sum{x_w^2} = \sum{x_1^2} + ... + \sum{x_k^2} \\
+    = \left[ \sum{X_1^2} - 
+    \frac{(\sum{X_1})^2}{n_1} \right] + ... + 
+    \left[ \sum{X_k^2} - \frac{(\sum{X_k})^2}{n_k} \right]
+  \end{eqnarray*}
+  and also the within-group deviation cross products: 
+  \begin{eqnarray*}
+    \sum{xy_w} = \sum{xy_1} + ... + \sum{xy_k} \\
+    = \left[ \sum{XY_1} - 
+    \frac{(\sum{X_1})(\sum{Y_1})}{n_1}\right] + .... +
+    \left[\sum{XY_k} - \frac{(\sum{X_k})(\sum{Y_k})}{n_k}\right]
+  \end{eqnarray*}
+  
+  \item Computation of within-group residual SS (error SS)
+  \begin{align*}
+  SSres_w = \sum{y_w^2} - \frac{(\sum{xy_w})^2}{\sum{x_w^2}}
+  \end{align*}
+  
+  \item Computation of adjusted-treatment effects (AT) Sum of squares 
+  \begin{align*}
+  SS_{AT} = SSres_t - SSres_w 
+  \end{align*}
+  
+  \item Computation of F-ratio 
+  \begin{align*}
+  F = \frac{N-k-C}{k-1}\frac{SS_{AT}}{SSres_w}
+  \end{align*}
 \end{enumerate}
 
 
