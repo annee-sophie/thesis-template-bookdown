@@ -6,8 +6,6 @@ submission_date: "August 1th 2018"
 adviser: "Prof. Dr. Nicolai Meinshausen"
 coadviser:
 output:
-  bookdown::epub_book:
-    default
   bookdown::pdf_book:
     template: tex/MasterThesisSfS.tex
     keep_tex: yes
@@ -23,6 +21,8 @@ output:
       tango
     includes:
       in_header: tex/preamble.tex
+  bookdown::epub_book:
+    default
   bookdown::gitbook: default
 bibliography: [bib/bib.bib]
 biblio-style: apalike

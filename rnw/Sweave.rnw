@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc} 
+\title{Hello}
+\begin{document}
+\maketitle
+
+This is a test
+
+<<>>=
+library(car)
+
+data("anscombe")
+summary(anscombe)
+@
+
+
+
+
+\end{document}
