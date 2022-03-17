@@ -48,6 +48,7 @@ mean(adjusted.estimates) - true.treatment.effect
 1.96 * sd.of.unadj / sqrt(Replications)
 1.96 * sd.of.adj   / sqrt(Replications)
 ```
+
 ```{r}
 rm(list=ls())
 library(MASS)  # for mvrnorm()

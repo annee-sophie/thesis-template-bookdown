@@ -1,0 +1,35 @@
+\documentclass{article}
+\title{Model with and without Covariates - a Comparison of Power}
+\usepackage[a4paper, top = 3.5cm, bottom = 3.5cm, left = 3.5 cm, right = 3.5 cm]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+\maketitle 
+First we are gonna create some covariates: First one is gender (m = 1, f = 0); second one is age (over 18, mean = 45) : 
+N = Number of objects (people) 
+replicas = number of simulations 
+The covariates are not correlated to each other (next step maybe?)
+<<>>=
+set.seed(231)
+N = 1000 #number of people
+N.treated = 500 
+replicas = 10000 #number of simulations
+gender = rbinom(n = N, size = 1, prob = 0.5)
+#age =age2 = round(rnorm(n = N, mean = 45, sd = 16))
+#age2[age<18] = round(rnorm(n = 1, mean = 45, sd = 16))
+#par(mfrow  =c(1,2))
+#hist(age, breaks = 50)
+#hist(age2, breaks = 50)
+epsilon = rnorm(n = N, mean = 0, sd = 1) # true error term 
+#first we simulate the case where the response is not correlated with the two covariates 
+rho = 0.5
+cov.mat = matrix(c(1,rho,rho, 1), nrow = 2)
+
+@
+
+
+
+
+
+
+\end{document}
